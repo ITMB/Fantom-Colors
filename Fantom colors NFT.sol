@@ -14,8 +14,7 @@ import "./Ownable.sol";
 import "./ERC721URIStorage.sol";
 
 
-
-contract MyNFT is ERC721URIStorage, Ownable {
+contract fantomColors is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
@@ -25,7 +24,13 @@ contract MyNFT is ERC721URIStorage, Ownable {
         public payable onlyOwner
         returns (uint256)
     {
+        ///@dev balance of can be changed so that each address may mint more than one $NFT
         require(balanceOf(msg.sender) == 0, 'Each address may only mint one color');
+
+        ///@dev require that the mint costs something, the amount can be changed. 
+
+       
+       ///@dev this increments the token ID, so that each NFT has a unique ID
         _tokenIds.increment();
 
         uint256 newItemId = _tokenIds.current();
